@@ -1,34 +1,75 @@
-<!--  -->
 <template>
-  <view class='container'>
-    <view wx:if="{{show == 'true'}}">{{show}}</view>
+  <view class="lazyload-con">
+    <button size="defult" type="defult" @tap="showLazyload">
+      show lazyload
+    </button>
+    <view wx:for="{{dataList}}" class='item item-{{index}}' wx:key="{{item.src}}">
+      <image class="{{item.show ? 'active': ''}}" mode="bottom" src="{{item.show ? item.src : defaultImg}}"></image>
+    </view>
   </view>
 </template>
 
 <script>
-  import wepy from 'wepy';
-  export default class Example extends wepy.component {
-    props = {
-      show: String
-    };
+  import wepy from 'wepy'
 
-    data = {};
-
-    components = {};
-
-    methods = {};
-
-    events = {};
-
-    watch = {};
-
-    computed = {};
-
-    onLoad() { };
-
-    onShow() { };
+  export default class Index extends wepy.component {
+    config = {
+      navigationBarTitleText: 'test'
+    }
+    data = {
+      defaultImg: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1539684906480&di=ba72909fb567710cbe644774c8e762b7&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2015-02-05%2F190716903.jpg',
+      dataList: [
+        { src: 'https://haitao.nosdn1.127.net/1cfpine8b74_400_400.jpg', show: false },
+        { src: 'https://haitao.nosdn1.127.net/1cfpiqtkr77_400_400.jpg', show: false },
+        { src: 'https://haitao.nosdn1.127.net/1cfpjk3uk77_400_400.jpg', show: false },
+        { src: 'https://haitao.nosdn1.127.net/1bku1iun459_400_400.jpg', show: false },
+        { src: 'https://haitao.nosdn1.127.net/1cfpine8b74_400_400.jpg', show: false },
+        { src: 'https://haitao.nosdn1.127.net/1cfpiqtkr77_400_400.jpg', show: false },
+        { src: 'https://haitao.nosdn1.127.net/1cfpjk3uk77_400_400.jpg', show: false },
+        { src: 'https://haitao.nosdn1.127.net/1bku1iun459_400_400.jpg', show: false }
+      ]
+    }
+    methods = {
+      showLazyload () {
+        wepy.showToast({
+          title: 'test-testtest-testtest-testtest-testtest-testtest-testtest-testtest-testtest-testtest-testtest-test',
+          icon: 'none',
+          mask: true
+        })
+        let that = this
+        for (let i in that.dataList) {
+          let obs = wx.createIntersectionObserver()
+          obs.relativeToViewport().observe('.item-' + i, (ret) => {
+            console.log(ret)
+            if (ret.intersectionRatio > 0) {
+              obs.disconnect()
+              that.dataList[i].show = true
+              that.$apply()
+            }
+          })
+        }
+      }
+    }
+    onShow () {
+    }
   }
 </script>
 
-<style lang='less'>
+<style lang="less">
+  .lazyload-con{
+    width: 100%;
+  }
+  .item{
+    margin-bottom: 40rpx;
+  }
+  image{
+    width: 100%;
+    height: 600rpx;
+    transition: all .3s ease;
+    opacity: 0.8;
+    vertical-align: middle;
+  }
+  .active{
+    opacity: 1;
+  }
 </style>

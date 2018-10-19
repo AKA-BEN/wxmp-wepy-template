@@ -7,7 +7,7 @@
   <view class="container">
     shopcart
     <navigator url="/pages/shopcart/pay" open-type="navigate">to pay</navigator>
-    <Lazyload :show.sync="isshow"></Lazyload>
+    <Lazyload />
   </view>
 </template>
 
