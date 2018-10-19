@@ -1,0 +1,43 @@
+<style lang="less">
+  .container {
+    color: #333;
+  }
+</style>
+<template>
+  <view class="container">
+    shopcart
+    <navigator url="/pages/shopcart/pay" open-type="navigate">to pay</navigator>
+    <Lazyload :show.sync="isshow"></Lazyload>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Lazyload from '@/components/base/lazyload'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'shopcart'
+    }
+    components = { Lazyload }
+
+    mixins = []
+
+    data = {
+      isshow: 'false'
+    }
+
+    computed = {}
+
+    methods = {}
+
+    events = {}
+
+    onLoad() {
+      setTimeout(() => {
+        this.isshow = 'true'
+        this.$apply()
+      }, 1000)
+    }
+  }
+</script>

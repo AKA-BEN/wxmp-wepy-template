@@ -1,0 +1,33 @@
+<style lang="less">
+  .container {
+    color: #333;
+  }
+</style>
+<template>
+  <view class="container">
+    user
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'user'
+    }
+    components = {}
+
+    mixins = []
+
+    data = {}
+
+    computed = {}
+
+    methods = {}
+
+    events = {}
+
+    onLoad() {}
+  }
+</script>

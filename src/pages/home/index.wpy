@@ -1,0 +1,24 @@
+<style lang="less">
+  .box{
+    background-color: antiquewhite;
+    .item{
+      color: red;
+    }
+  }
+</style>
+
+<template>
+  <view class="box">
+    <text class="item">个人中心</text>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'user'
+    }
+  }
+</script>

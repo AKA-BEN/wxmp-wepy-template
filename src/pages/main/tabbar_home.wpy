@@ -1,0 +1,57 @@
+<style lang="less">
+  .container {
+    color: #333;
+  }
+</style>
+<template>
+  <view class="container">
+    <button size="defult" type="defult" @tap="toast">
+      home
+    </button>
+    <toast />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import List from '@/components/list'
+  import Toast from 'wepy-com-toast'
+  import testMixin from '@/mixins/test'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'home'
+    }
+    components = {
+      list: List,
+      toast: Toast
+    }
+
+    mixins = [testMixin]
+
+    data = {}
+
+    computed = {
+      now () {
+        return +new Date()
+      }
+    }
+
+    methods = {
+      toast () {
+        let promise = this.$invoke('toast', 'show', {
+          title: '自定义标题',
+          img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
+        })
+
+        promise.then((d) => {
+          console.log('toast done')
+        })
+      }
+    }
+
+    events = {}
+
+    onLoad() {}
+  }
+</script>

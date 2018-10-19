@@ -1,0 +1,30 @@
+<!--  -->
+<template>
+  <view class='container'>pay</view>
+</template>
+
+<script>
+
+  import wepy from 'wepy'
+
+  export default class Example extends wepy.page {
+    config = {
+      navigationBarTitleText: 'pay'
+    }
+    data = {}
+    components = {}
+    methods = {}
+    events = {}
+    watch = {}
+    computed = {}
+    onLoad() {}
+    onShow() {}
+  }
+
+</script>
+
+<style lang='less'>
+  .container{
+    color: #000;
+  }
+</style>
